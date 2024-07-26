@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "854292612545",
+    "project_id": "notes-uas-007",
+    "storage_bucket": "notes-uas-007.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854292612545:android:909e464913af9bfe4f1b40",
+        "android_client_info": {
+          "package_name": "com.rachmadhani.notesuas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD664tiDhuhgqysPYpsBaPlqFUHl06ZZmQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
