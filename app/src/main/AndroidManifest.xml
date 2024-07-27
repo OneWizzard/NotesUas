@@ -20,9 +20,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCldoQF246qMYXn8cd8RY_qperRExtsOZA"/>
         <activity
-            android:name=".MapActivity"
-            android:exported="false" />
-        <activity
             android:name=".NoteDetails"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
