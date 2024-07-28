@@ -22,6 +22,7 @@ firebaseFirestore = "25.0.0"
 appcompatV7 = "28.0.0"
 playServicesMaps = "19.0.0"
 playServicesLocation = "21.3.0"
+mapsSecret = "2.0.1"
 
 [libraries]
 androidx-appcompat-v120 = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
@@ -56,4 +57,4 @@ play-services-location = { group = "com.google.android.gms", name = "play-servic
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
-
+map-secret = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "mapsSecret" }
