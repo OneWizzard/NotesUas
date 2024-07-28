@@ -5,7 +5,6 @@ public class FirebaseModel {
     private String title;
     private String content;
 
-
     public FirebaseModel() {
 
     }

@@ -104,7 +104,6 @@ public class SignUp extends AppCompatActivity {
                 }
             });
         }
-
         else
         {
             Toast.makeText(getApplicationContext(),"Failded to send verification email",Toast.LENGTH_SHORT).show();

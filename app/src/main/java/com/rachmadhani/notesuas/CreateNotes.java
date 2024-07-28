@@ -3,6 +3,8 @@ package com.rachmadhani.notesuas;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -28,7 +30,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class CreateNotes extends AppCompatActivity {
@@ -43,6 +48,7 @@ public class CreateNotes extends AppCompatActivity {
 
     private FusedLocationProviderClient fusedLocationProviderClient;
     private Location userLocation;
+    private String userAddress = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,9 +95,8 @@ public class CreateNotes extends AppCompatActivity {
                     note.put("title",title);
                     note.put("content",content);
 
-                    if (userLocation != null) {
-                        note.put("latitude", userLocation.getLatitude());
-                        note.put("longitude", userLocation.getLongitude());
+                    if (!userAddress.isEmpty()) {
+                        note.put("location", userAddress);
                     }
 
                     documentReference.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -125,10 +130,20 @@ public class CreateNotes extends AppCompatActivity {
             public void onComplete(@NonNull Task<Location> task) {
                 if (task.isSuccessful() && task.getResult() != null) {
                     userLocation = task.getResult();
-                    String locationText = "Loc: " + userLocation.getLatitude() + ", "+ userLocation.getLongitude();
-                    String currentContent = mcreatecontentofnote.getText().toString();
-                    if (!currentContent.contains(locationText)) {
-                        mcreatecontentofnote.append("\n" + locationText);
+                    Geocoder geocoder = new Geocoder(CreateNotes.this, Locale.getDefault());
+                    try {
+                        List<Address> addresses = geocoder.getFromLocation(userLocation.getLatitude(), userLocation.getLongitude(), 1);
+                        if (addresses != null && !addresses.isEmpty()) {
+                            Address address = addresses.get(0);
+                            userAddress = address.getAddressLine(0);
+                            String locationText = "Location: " + userAddress;
+                            String currentContent = mcreatecontentofnote.getText().toString();
+                            if (!currentContent.contains(locationText)) {
+                                mcreatecontentofnote.append("\n" + locationText);
+                            }
+                        }
+                    } catch (IOException e) {
+                        Toast.makeText(getApplicationContext(), "Failed to get address", Toast.LENGTH_SHORT).show();
                     }
                     Toast.makeText(getApplicationContext(), "Location Acquired", Toast.LENGTH_SHORT).show();
                 } else {
