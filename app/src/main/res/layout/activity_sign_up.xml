@@ -74,7 +74,7 @@
         android:id="@+id/password"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
-        tools:passwordToggleEnabled="true"
+        app:passwordToggleEnabled="true"
         >
         <EditText
             android:layout_width="match_parent"
